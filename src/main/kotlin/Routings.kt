@@ -281,6 +281,17 @@ private suspend fun handleReverseByGeohash(
 
     val geohash = geohashParam.lowercase()
 
+    if (geohash == "s0000000") {
+
+        call.respondText(
+            text = "Parameter 'geohash' is invalid. You can't query for Null Island.",
+            contentType = ContentType.Text.Plain,
+            status = HttpStatusCode.BadRequest
+        )
+
+        return
+    }
+
     val cachedAddress = LocationCache.findAddress(
         geohash = geohash,
         language = language
