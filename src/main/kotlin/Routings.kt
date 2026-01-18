@@ -201,11 +201,8 @@ private fun createReverseUrl(
         "&email=${Config.email}"
 
 /**
- * Checks the API key if one is set.
+ * Checks the API key.
  * Returns "true" when everything is fine, "false" on error.
- */
-/**
- * Verifies the API key header if one is configured.
  */
 private suspend fun ensureValidApiKey(
     call: ApplicationCall
@@ -400,4 +397,5 @@ private fun isValidCoordinateRange(
     latitude: Double,
     longitude: Double
 ): Boolean =
-    latitude in -90.0..90.0 && longitude in -180.0..180.0
+    latitude in -90.0..90.0 && longitude in -180.0..180.0 &&
+        latitude != 0.0 && longitude != 0.0
